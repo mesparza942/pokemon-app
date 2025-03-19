@@ -7,6 +7,22 @@ export interface Pokemon {
   };
 }
 
+export interface PokemonAbility {
+  name: string;
+  effect: string;
+}
+
+export interface PokemonForm {
+  name: string;
+  imageUrl: string;
+}
+
+export interface PokemonMove {
+  name: string;
+  effect: string;
+  effectType: string;
+}
+
 export interface PokemonListPaginated {
   results: Pokemon[];
   count: number;

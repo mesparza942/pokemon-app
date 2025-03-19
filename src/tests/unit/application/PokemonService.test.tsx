@@ -39,6 +39,35 @@ const dummyPokemonRepository: IPokemonRepository = {
       url: "",
     };
   },
+  getPokemonAbility: async (abilityUrl?: string) => {
+    if (abilityUrl === "test") {
+      throw new Error("Pokemon Ability not found.");
+    }
+    return {
+      name: "test ability",
+      effect: "the best ability",
+    };
+  },
+  getPokemonMove: async (moveUrl?: string) => {
+    if (moveUrl === "test") {
+      throw new Error("Pokemon Move not found.");
+    }
+    return {
+      name: "test move",
+      effect: "the best move",
+      effectType: "move type",
+    };
+  },
+  getPokemonForm: async (formUrl?: string) => {
+    if (formUrl === "test") {
+      throw new Error("Pokemon Form not found.");
+    }
+    return {
+      name: "test form",
+      imageUrl:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png",
+    };
+  },
 };
 
 describe("PokemonService", () => {
@@ -93,6 +122,63 @@ describe("PokemonService", () => {
   it("should throw an error for api 'searchPokemonByName' call with inexistent pokemon name", async () => {
     await expect(pokemonService.searchPokemonByName("test")).rejects.toThrow(
       "Pokemon not found"
+    );
+  });
+
+  it("should return a pokemon ability given an abilityUrl", async () => {
+    const pokemonAbility = await pokemonService.getPokemonAbility(
+      "https://pokeapi.co/api/v2/ability/51/"
+    );
+    expect(pokemonAbility.name).toBe("test ability");
+  });
+
+  it("should throw an error for api 'getPokemonAbility' call without argument", async () => {
+    await expect(pokemonService.getPokemonAbility()).rejects.toThrow(
+      "Invalid Request"
+    );
+  });
+
+  it("should throw an error for api 'getPokemonAbility' call with inexistent ability", async () => {
+    await expect(pokemonService.getPokemonAbility("test")).rejects.toThrow(
+      "Pokemon Ability not found."
+    );
+  });
+
+  it("should return a pokemon form given an formUrl", async () => {
+    const pokemonForm = await pokemonService.getPokemonForm(
+      "https://pokeapi.co/api/v2/form/51/"
+    );
+    expect(pokemonForm.name).toBe("test form");
+  });
+
+  it("should throw an error for api 'getPokemonForm' call without argument", async () => {
+    await expect(pokemonService.getPokemonForm()).rejects.toThrow(
+      "Invalid Request"
+    );
+  });
+
+  it("should throw an error for api 'getPokemonForm' call with inexistent form", async () => {
+    await expect(pokemonService.getPokemonForm("test")).rejects.toThrow(
+      "Pokemon Form not found."
+    );
+  });
+
+  it("should return a pokemon move given an moveUrl", async () => {
+    const pokemonMove = await pokemonService.getPokemonMove(
+      "https://pokeapi.co/api/v2/move/51/"
+    );
+    expect(pokemonMove.name).toBe("test move");
+  });
+
+  it("should throw an error for api 'getPokemonMove' call without argument", async () => {
+    await expect(pokemonService.getPokemonMove()).rejects.toThrow(
+      "Invalid Request"
+    );
+  });
+
+  it("should throw an error for api 'getPokemonMove' call with inexistent move", async () => {
+    await expect(pokemonService.getPokemonMove("test")).rejects.toThrow(
+      "Pokemon Move not found."
     );
   });
 });
