@@ -2,6 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "@/store/userSlice";
 import type { AppDispatch, RootState } from "@/store";
+import { persistor } from "@/store";
 import { Button } from "@/presentation/components/common";
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
@@ -19,6 +20,7 @@ const LogoutButton = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(logoutUser());
+    persistor.purge(); // Clear 'user' item from localStorage
   };
 
   return (
