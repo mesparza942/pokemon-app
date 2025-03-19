@@ -20,6 +20,7 @@ const Input = ({
       </label>
       <input
         id={id}
+        data-testid={id}
         className={`${commonClass} ${className}`}
         disabled={disabled}
         {...(restProps as ComponentProps<"input">)}

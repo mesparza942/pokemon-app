@@ -40,7 +40,7 @@ const PokemonList = () => {
   }, [pokemonList]);
 
   useEffect(() => {
-    if (!search) {
+    if (!search && pokemonListPage && pokemonListPage.count > 0) {
       getPokemonList();
     }
   }, [search]);

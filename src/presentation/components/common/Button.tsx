@@ -19,6 +19,7 @@ const Button = ({
   const btnTypeClass = btnType === "primary" ? "bg-[#FEC908]" : "bg-gray-400";
   return (
     <button
+      data-testid="button-test"
       className={`${commonClass} ${btnTypeClass} text-black font-semibold focus:outline-none rounded-full py-2 px-4 hover:cursor-pointer ${className}`}
       disabled={disabled}
       {...(restProps as ComponentProps<"button">)}
