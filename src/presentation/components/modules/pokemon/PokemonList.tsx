@@ -1,24 +1,20 @@
 "use client";
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pokemon, PokemonListPaginated } from "@/domain/models/Pokemon";
-import { PokemonApiRepository } from "@/infrastructure/repositories/PokemonRepository";
 import { basePath } from "@/infrastructure/api/pokemonApi";
-import { PokemonService } from "@/application/usecases/PokemonService";
 import { useFetch } from "@/presentation/hooks/useFetch";
 import { useDebounce } from "@/presentation/hooks/useDebounce";
 import PokemonCard from "./PokemonCard";
 import PokemonSearch from "./PokemonSearch";
 import PokemonListLoading from "./PokemonListLoading";
 import { Button } from "../../common";
+import { usePokemonService } from "@/presentation/hooks/usePokemonService";
 
 const PokemonList = () => {
   const [search, setSearch] = useDebounce("", 500);
   const [pokemonListPage, setPokemonListPage] =
     useState<PokemonListPaginated>();
-  const pokemonService = useMemo(() => {
-    const repo = new PokemonApiRepository();
-    return new PokemonService(repo);
-  }, []);
+  const { pokemonService } = usePokemonService();
 
   const {
     data: pokemonList,
@@ -26,7 +22,7 @@ const PokemonList = () => {
     loading,
     error,
   } = useFetch<PokemonListPaginated, string>({
-    api: pokemonService.getPokemonList.bind(pokemonService),
+    api: pokemonService!.getPokemonList.bind(pokemonService),
   });
 
   useEffect(() => {
@@ -86,7 +82,7 @@ const PokemonList = () => {
           <PokemonCard
             key={pokemon.name}
             pokemonName={pokemon.name}
-            pokemonUrl={pokemon.url}
+            pokemonUrl={pokemon.url!}
           />
         ))
       )}

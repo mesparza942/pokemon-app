@@ -1,10 +1,9 @@
 "use client";
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pokemon } from "@/domain/models/Pokemon";
-import { PokemonApiRepository } from "@/infrastructure/repositories/PokemonRepository";
-import { PokemonService } from "@/application/usecases/PokemonService";
 import { useFetch } from "@/presentation/hooks/useFetch";
 import { Input } from "../../common";
+import { usePokemonService } from "@/presentation/hooks/usePokemonService";
 
 const PokemonSearch = ({
   searchTerm,
@@ -17,10 +16,7 @@ const PokemonSearch = ({
 }) => {
   const [value, setValue] = useState("");
   const [searchError, setSearchError] = useState<string | null>(null);
-  const pokemonService = useMemo(() => {
-    const repo = new PokemonApiRepository();
-    return new PokemonService(repo);
-  }, []);
+  const { pokemonService } = usePokemonService();
 
   const {
     data: pokemon,
@@ -28,7 +24,7 @@ const PokemonSearch = ({
     loading,
     error,
   } = useFetch<Pokemon, string>({
-    api: pokemonService.searchPokemonByName.bind(pokemonService),
+    api: pokemonService!.searchPokemonByName.bind(pokemonService),
   });
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

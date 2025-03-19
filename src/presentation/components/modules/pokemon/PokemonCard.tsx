@@ -1,11 +1,10 @@
 "use client";
-import React, { useMemo, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Pokemon } from "@/domain/models/Pokemon";
-import { PokemonApiRepository } from "@/infrastructure/repositories/PokemonRepository";
-import { PokemonService } from "@/application/usecases/PokemonService";
 import { useFetch } from "@/presentation/hooks/useFetch";
 import Image from "next/image";
 import { capitalize } from "@/utils/capitalize";
+import { usePokemonService } from "@/presentation/hooks/usePokemonService";
 
 const PokemonCard = ({
   pokemonUrl,
@@ -14,10 +13,7 @@ const PokemonCard = ({
   pokemonUrl: string;
   pokemonName: string;
 }) => {
-  const pokemonService = useMemo(() => {
-    const repo = new PokemonApiRepository();
-    return new PokemonService(repo);
-  }, []);
+  const { pokemonService } = usePokemonService();
 
   const {
     data: pokemonDetail,
@@ -25,7 +21,7 @@ const PokemonCard = ({
     loading,
     error,
   } = useFetch<Pokemon, string>({
-    api: pokemonService.getPokemonDetails.bind(pokemonService),
+    api: pokemonService!.getPokemonDetails.bind(pokemonService),
   });
 
   useEffect(() => {
@@ -41,7 +37,7 @@ const PokemonCard = ({
         <div className="w-[100px] h-[100px] bg-amber-300" />
       ) : (
         <Image
-          src={pokemonDetail.sprites?.front_default ?? ""}
+          src={pokemonDetail.imageUrl!}
           width={100}
           height={100}
           alt={pokemonName}
