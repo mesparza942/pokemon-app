@@ -9,8 +9,8 @@ const dummyPokemonRepository: IPokemonRepository = {
         nextPageApi: "https://pokeapi.co/api/v2/valid-next-page",
         previousPageApi: "https://pokeapi.co/api/v2/valid-prev-page",
         results: [
-          { id: 1, name: "Pikachu", url: "" },
-          { id: 2, name: "Raichu", url: "" },
+          { id: 1, name: "Pikachu", type: "Electric", url: "" },
+          { id: 2, name: "Raichu", type: "Electric", url: "" },
         ],
       };
     }
@@ -18,7 +18,7 @@ const dummyPokemonRepository: IPokemonRepository = {
       count: 1,
       nextPageApi: undefined,
       previousPageApi: undefined,
-      results: [{ id: 1, name: "Pikachu", url: "" }],
+      results: [{ id: 1, name: "Pikachu", type: "Electric", url: "" }],
     };
   },
   getPokemonDetails: async (pokemonUrl?: string) => {
@@ -26,7 +26,12 @@ const dummyPokemonRepository: IPokemonRepository = {
     return {
       id: 1,
       name: "Pikachu",
+      type: "Electric",
       url: "",
+      imageUrl: "",
+      abilities: [],
+      stats: [],
+      moves: [],
     };
   },
   searchPokemonByName: async (pokemonName?: string) => {
@@ -36,7 +41,12 @@ const dummyPokemonRepository: IPokemonRepository = {
     return {
       id: 1,
       name: "Pikachu",
+      type: "Electric",
       url: "",
+      imageUrl: "",
+      abilities: [],
+      stats: [],
+      moves: [],
     };
   },
   getPokemonAbility: async (abilityUrl?: string) => {
@@ -44,6 +54,7 @@ const dummyPokemonRepository: IPokemonRepository = {
       throw new Error("Pokemon Ability not found.");
     }
     return {
+      id: 1,
       name: "test ability",
       effect: "the best ability",
     };
@@ -53,19 +64,11 @@ const dummyPokemonRepository: IPokemonRepository = {
       throw new Error("Pokemon Move not found.");
     }
     return {
+      id: 1,
       name: "test move",
       effect: "the best move",
-      effectType: "move type",
-    };
-  },
-  getPokemonForm: async (formUrl?: string) => {
-    if (formUrl === "test") {
-      throw new Error("Pokemon Form not found.");
-    }
-    return {
-      name: "test form",
-      imageUrl:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png",
+      effectCategory: "move category",
+      power: 80,
     };
   },
 };
@@ -141,25 +144,6 @@ describe("PokemonService", () => {
   it("should throw an error for api 'getPokemonAbility' call with inexistent ability", async () => {
     await expect(pokemonService.getPokemonAbility("test")).rejects.toThrow(
       "Pokemon Ability not found."
-    );
-  });
-
-  it("should return a pokemon form given an formUrl", async () => {
-    const pokemonForm = await pokemonService.getPokemonForm(
-      "https://pokeapi.co/api/v2/form/51/"
-    );
-    expect(pokemonForm.name).toBe("test form");
-  });
-
-  it("should throw an error for api 'getPokemonForm' call without argument", async () => {
-    await expect(pokemonService.getPokemonForm()).rejects.toThrow(
-      "Invalid Request"
-    );
-  });
-
-  it("should throw an error for api 'getPokemonForm' call with inexistent form", async () => {
-    await expect(pokemonService.getPokemonForm("test")).rejects.toThrow(
-      "Pokemon Form not found."
     );
   });
 

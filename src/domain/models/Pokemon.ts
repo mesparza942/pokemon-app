@@ -1,26 +1,34 @@
 export interface Pokemon {
   id: number;
   name: string;
-  url: string;
-  sprites?: {
-    front_default: string;
-  };
+  type: string;
+  url?: string;
+  imageUrl?: string;
+  abilities?: Partial<PokemonAbility>[];
+  stats?: Partial<PokemonStats>[];
+  moves?: Partial<PokemonMove>[];
 }
 
 export interface PokemonAbility {
+  id: number;
   name: string;
   effect: string;
+  url?: string;
 }
 
-export interface PokemonForm {
+export interface PokemonStats {
+  id: number;
   name: string;
-  imageUrl: string;
+  value: number;
 }
 
 export interface PokemonMove {
+  id: number;
   name: string;
   effect: string;
-  effectType: string;
+  effectCategory: string;
+  power: number;
+  url?: string;
 }
 
 export interface PokemonListPaginated {

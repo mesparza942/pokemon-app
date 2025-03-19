@@ -3,7 +3,6 @@ import {
   PokemonListPaginated,
   Pokemon,
   PokemonAbility,
-  PokemonForm,
   PokemonMove,
 } from "@/domain/models/Pokemon";
 
@@ -68,19 +67,6 @@ export class PokemonService {
       return pokemonMove;
     } catch {
       throw new Error("Pokemon Move not found.");
-    }
-  }
-
-  async getPokemonForm(formUrl?: string): Promise<PokemonForm> {
-    if (!formUrl) {
-      throw new Error("Invalid Request");
-    }
-    try {
-      const pokemonForm = this.pokemonRepository.getPokemonForm(formUrl);
-
-      return pokemonForm;
-    } catch {
-      throw new Error("Pokemon Form not found.");
     }
   }
 }
