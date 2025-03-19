@@ -1,11 +1,15 @@
 import LogoutButton from "../components/modules/auth/LogoutButton";
+import PokemonList from "../components/modules/pokemon/PokemonList";
 
 const PokemonListPage = () => {
   return (
     <div>
       <LogoutButton />
-      <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-        Pokemon List
+      <div className="flex flex-col py-12 px-32 gap-8">
+        <h1 className="text-center text-2xl font-bold text-amber-400">
+          Pokemon List
+        </h1>
+        <PokemonList />
       </div>
     </div>
   );

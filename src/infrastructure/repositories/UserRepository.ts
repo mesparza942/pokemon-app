@@ -1,6 +1,6 @@
 import { IUserRepository } from "@/domain/repositories/IUserRepository";
 import { User } from "@/domain/models/User";
-import { loginUser } from "../api/userApi";
+import { loginUser } from "../api/authMockApi";
 
 export class UserRepository implements IUserRepository {
   async login(username: string, password: string): Promise<User | null> {

@@ -30,8 +30,8 @@ export const loginUser = createAsyncThunk(
     try {
       const user = await userService.login({ username, password });
       return user;
-    } catch (error: any) {
-      return thunkApi.rejectWithValue(error.message);
+    } catch (error: unknown) {
+      return thunkApi.rejectWithValue((error as Error).message);
     }
   }
 );
@@ -42,8 +42,8 @@ export const logoutUser = createAsyncThunk(
     try {
       await userService.logout();
       return;
-    } catch (error: any) {
-      return thunkApi.rejectWithValue(error.message);
+    } catch (error: unknown) {
+      return thunkApi.rejectWithValue((error as Error).message);
     }
   }
 );

@@ -12,7 +12,7 @@ const Input = ({
   ...restProps
 }: InputProps) => {
   const commonClass =
-    "border border-black rounded-full py-2 px-4 hover:bg-opacity-80 focus:outline-nice-purple";
+    "border border-black rounded-full py-2 px-4 hover:bg-opacity-80 focus:outline-amber-300";
   return (
     <>
       <label htmlFor={id} className="hidden">
