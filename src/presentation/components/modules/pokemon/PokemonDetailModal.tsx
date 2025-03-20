@@ -16,7 +16,7 @@ const PokemonDetailModal = ({
 }: PokemonDetailModalProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="w-[350px] flex flex-col items-center justify-center gap-2">
+      <div className="w-[300px] sm:w-[350px] flex flex-col items-center justify-center gap-2">
         <p className="font-bold text-white text-3xl">
           {capitalize(pokemon.name)}
         </p>

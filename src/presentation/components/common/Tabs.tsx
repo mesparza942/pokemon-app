@@ -15,7 +15,7 @@ const Tabs = ({ activeTab, tabs, onClickTab }: TabsProps) => {
         {tabs.map((tab) => (
           <button
             key={tab.id}
-            className={`text-sm bg-inherit cursor-pointer px-8 py-2 hover:bg-gray-400 ${
+            className={`text-sm bg-inherit cursor-pointer px-5 sm:px-8 py-2 hover:bg-gray-400 ${
               tab.id === activeTab ? "!bg-gray-400" : ""
             }`}
             onClick={() => onClickTab(tab.id)}
