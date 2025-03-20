@@ -69,7 +69,7 @@ const PokemonList = () => {
   if (error) return <div>Something went wrong!</div>;
 
   return (
-    <div className="grid grid-cols-4 grid-rows-5 lg:grid-cols-5 lg:grid-rows-4 gap-12 justify-around">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 md:grid-rows-5 lg:grid-cols-5 lg:grid-rows-4 gap-12 justify-around">
       {pokemonSelected && (
         <PokemonDetailModal
           isOpen={pokemonModalOpen}
@@ -84,7 +84,7 @@ const PokemonList = () => {
       />
       {pokemonListPage?.previousPageApi && (
         <Button
-          className="absolute left-10 top-[50%] text-2xl"
+          className="fixed sm:absolute left-1 sm:left-10 top-[50%] text-lg sm:text-2xl"
           onClick={() => handleChangePage(pokemonListPage?.previousPageApi)}
         >
           ←
@@ -104,7 +104,7 @@ const PokemonList = () => {
       )}
       {pokemonListPage?.nextPageApi && (
         <Button
-          className="absolute right-10 top-[50%] text-2xl"
+          className="fixed sm:absolute right-1 sm:right-10 top-[50%] text-lg sm:text-2xl"
           onClick={() => handleChangePage(pokemonListPage?.nextPageApi)}
         >
           →

@@ -28,7 +28,7 @@ const LogoutButton = () => {
       type="button"
       onClick={handleSubmit}
       btnType="secondary"
-      className="absolute right-4 top-4"
+      className="absolute right-2 top-2 sm:right-4 sm:top-4"
     >
       Logout
     </Button>

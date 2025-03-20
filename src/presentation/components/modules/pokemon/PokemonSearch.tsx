@@ -50,7 +50,7 @@ const PokemonSearch = ({
   }, [pokemon]);
 
   return (
-    <div className="fixed top-12 left-32">
+    <div className="fixed top-12 left-4 md:top-12 md:left-32">
       <Input
         id="search-pokemon"
         type="text"

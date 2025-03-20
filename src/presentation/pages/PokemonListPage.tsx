@@ -5,7 +5,7 @@ const PokemonListPage = () => {
   return (
     <div>
       <LogoutButton />
-      <div className="flex flex-col py-12 px-32 gap-8">
+      <div className="flex flex-col py-4 px-16 sm:py-12 sm:px-32 gap-8">
         <h1 className="text-center text-2xl font-bold text-amber-400">
           Pokemon List
         </h1>

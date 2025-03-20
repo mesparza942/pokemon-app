@@ -46,7 +46,7 @@ const LoginForm = () => {
     <>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-2 items-center justify-center"
+        className="flex flex-col gap-4 items-center justify-center"
       >
         <Input
           id="username"
@@ -68,7 +68,7 @@ const LoginForm = () => {
           error={passwordError}
           required
         />
-        <Button type="submit" disabled={loading}>
+        <Button type="submit" disabled={loading} className="mt-2">
           {loading ? "Logging in..." : "Login"}
         </Button>
       </form>
